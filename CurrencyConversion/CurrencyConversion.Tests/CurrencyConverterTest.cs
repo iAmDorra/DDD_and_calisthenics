@@ -20,5 +20,21 @@ namespace CurrencyConversion.Tests
             
             Assert.AreEqual(amount, result);
         }
+
+        [TestMethod]
+        public void Should_return_the_converted_amount_of_a_source_currency()
+        {
+            var rate = 1.1329;
+            var amount = 100;
+            var sourceCurrency = "EUR";
+            var targetCurrency = "USD";
+            IRateService rateService = Substitute.For<IRateService>();
+            rateService.GetRate(sourceCurrency, targetCurrency).Returns(rate);
+            CurrencyConverter currencyConverter = new CurrencyConverter(rateService);
+            var result = currencyConverter.Convert(amount, sourceCurrency, targetCurrency);
+
+            var expectedAmount = amount * rate;
+            Assert.AreEqual(expectedAmount, result);
+        }
     }
 }

@@ -11,6 +11,11 @@ public class CurrencyConverter
 
     public double Convert(double amount, string sourceCurrency, string targetCurrency)
     {
+        if (sourceCurrency != targetCurrency)
+        {
+            var rate = _rateService.GetRate(sourceCurrency, targetCurrency);
+            amount *= rate;
+        }
         return amount;
     }
 }
