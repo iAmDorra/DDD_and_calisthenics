@@ -7,7 +7,7 @@ namespace CurrencyConversion.Tests
     public class CurrencyConverterTest
     {
         [TestMethod]
-        public void Should_return_the_same_amount_when_target_currency_is_same()
+        public void Should_return_the_same_amount_when_source_and_target_currency_are_same()
         {
             var rate = 1;
             var amount = 100;
@@ -17,9 +17,8 @@ namespace CurrencyConversion.Tests
             rateService.GetRate(sourceCurrency, targetCurrency).Returns(rate);
             CurrencyConverter currencyConverter = new CurrencyConverter(rateService);
             var result = currencyConverter.Convert(amount, sourceCurrency, targetCurrency);
-
-            var expectedAmount = 100;
-            Assert.AreEqual(expectedAmount, result);
+            
+            Assert.AreEqual(amount, result);
         }
     }
 }
