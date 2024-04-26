@@ -14,8 +14,13 @@ public class CurrencyConverter
         if (sourceCurrency != targetCurrency)
         {
             var rate = _rateService.GetRate(sourceCurrency, targetCurrency);
-            amount *= rate;
+            amount = Multiply(amount, rate);
         }
         return amount;
+    }
+
+    private static double Multiply(double amount, double rate)
+    {
+        return amount*rate;
     }
 }
