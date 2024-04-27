@@ -22,6 +22,6 @@ public class CurrencyConverter
 
     private static Amount Multiply(Amount amount, Rate rate)
     {
-        return new Amount(amount.GetValue() * rate.GetRate());
+        return new Amount(amount.GetValue() * rate.GetValue());
     }
 }

@@ -9,7 +9,7 @@ public class Rate
         this.rate = rate;
     }
 
-    public double GetRate()
+    public double GetValue()
     {
         return rate;
     }
