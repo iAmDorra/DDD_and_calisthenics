@@ -9,8 +9,8 @@ public class Rate
         this.rate = rate;
     }
 
-    public double GetValue()
+    public Amount Multiply(double amount)
     {
-        return rate;
+        return new Amount(amount * rate);
     }
 }
