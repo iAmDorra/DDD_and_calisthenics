@@ -14,7 +14,7 @@ namespace CurrencyConversion.Tests
             var sourceCurrency = "EUR";
             var targetCurrency = "EUR";
             IRateService rateService = Substitute.For< IRateService>();
-            rateService.GetRate(sourceCurrency, targetCurrency).Returns(rate);
+            rateService.GetRate(sourceCurrency, targetCurrency).Returns(new Rate(rate));
             CurrencyConverter currencyConverter = new CurrencyConverter(rateService);
             var result = currencyConverter.Convert(amount, sourceCurrency, targetCurrency);
             
@@ -29,7 +29,7 @@ namespace CurrencyConversion.Tests
             var sourceCurrency = "EUR";
             var targetCurrency = "USD";
             IRateService rateService = Substitute.For<IRateService>();
-            rateService.GetRate(sourceCurrency, targetCurrency).Returns(rate);
+            rateService.GetRate(sourceCurrency, targetCurrency).Returns(new Rate(rate));
             CurrencyConverter currencyConverter = new CurrencyConverter(rateService);
             var result = currencyConverter.Convert(amount, sourceCurrency, targetCurrency);
 
