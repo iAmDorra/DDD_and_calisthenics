@@ -1,16 +1,21 @@
 namespace CurrencyConversion.Domain;
 
-internal class Amount
+public class Amount
 {
-    private readonly double amount;
+    private readonly double value;
 
-    public Amount(double amount)
+    public Amount(double value)
     {
-        this.amount = amount;
+        this.value = value;
     }
 
     public double GetValue()
     {
-        return amount;
+        return value;
+    }
+
+    public Amount Multiply(Rate rate)
+    {
+        return new Amount(value * rate.GetValue());
     }
 }
