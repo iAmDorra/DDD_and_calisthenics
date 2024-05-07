@@ -11,14 +11,14 @@ namespace CurrencyConversion.Tests
         {
             var rate = 1;
             var amount = 100;
-            var sourceCurrency = "EUR";
-            var targetCurrency = "EUR";
-            IRateService rateService = Substitute.For< IRateService>();
+            var sourceCurrency = new Currency("EUR");
+            var targetCurrency = new Currency("EUR");
+            IRateService rateService = Substitute.For<IRateService>();
             rateService.GetRate(sourceCurrency, targetCurrency).Returns(new Rate(rate));
             CurrencyConverter currencyConverter = new CurrencyConverter(rateService);
-            var result = currencyConverter.Convert(amount, sourceCurrency, targetCurrency);
-            
-            Assert.AreEqual(amount, result);
+            var result = currencyConverter.Convert(new Amount(amount, sourceCurrency), targetCurrency);
+
+            Assert.AreEqual(amount, result.GetValue());
         }
 
         [TestMethod]
@@ -26,15 +26,15 @@ namespace CurrencyConversion.Tests
         {
             var rate = 1.1329;
             var amount = 100;
-            var sourceCurrency = "EUR";
-            var targetCurrency = "USD";
+            var sourceCurrency = new Currency("EUR");
+            var targetCurrency = new Currency("USD");
             IRateService rateService = Substitute.For<IRateService>();
             rateService.GetRate(sourceCurrency, targetCurrency).Returns(new Rate(rate));
             CurrencyConverter currencyConverter = new CurrencyConverter(rateService);
-            var result = currencyConverter.Convert(amount, sourceCurrency, targetCurrency);
+            var result = currencyConverter.Convert(new Amount(amount, sourceCurrency), targetCurrency);
 
             var expectedAmount = amount * rate;
-            Assert.AreEqual(expectedAmount, result);
+            Assert.AreEqual(expectedAmount, result.GetValue());
         }
     }
 }

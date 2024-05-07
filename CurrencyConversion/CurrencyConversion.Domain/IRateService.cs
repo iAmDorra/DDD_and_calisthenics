@@ -2,5 +2,5 @@ namespace CurrencyConversion.Domain;
 
 public interface IRateService
 {
-    Rate GetRate(string sourceCurrency, string targetCurrency);
+    Rate GetRate(Currency sourceCurrency, Currency targetCurrency);
 }

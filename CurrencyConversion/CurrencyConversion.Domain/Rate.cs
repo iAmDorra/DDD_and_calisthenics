@@ -2,15 +2,15 @@ namespace CurrencyConversion.Domain;
 
 public class Rate
 {
-    private readonly double rate;
+    private readonly double value;
 
     public Rate(double rate)
     {
-        this.rate = rate;
+        this.value = rate;
     }
 
-    public Amount Multiply(double amount)
+    public double Multiply(double amount)
     {
-        return new Amount(amount * rate);
+        return amount * value;
     }
 }

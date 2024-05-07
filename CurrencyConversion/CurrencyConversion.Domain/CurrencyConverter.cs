@@ -9,13 +9,13 @@ public class CurrencyConverter
         _rateService = rateService;
     }
 
-    public double Convert(double amount, string sourceCurrency, string targetCurrency)
+    public Amount Convert(Amount amount, Currency targetCurrency)
     {
-        if (sourceCurrency != targetCurrency)
+        if (!amount.HasSameCurrency(targetCurrency))
         {
-            var rate = _rateService.GetRate(sourceCurrency, targetCurrency);
-            var result = new Amount(amount).Multiply(rate);
-            amount = result.GetValue();
+            var rate = _rateService.GetRate(amount.GetCurrency(), targetCurrency);
+            var result = amount.Multiply(rate);
+            return result;
         }
         return amount;
     }
